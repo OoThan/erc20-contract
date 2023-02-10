@@ -11,11 +11,23 @@ contract ERC20 is IERC20 {
     string public symbol = "SOLBYEX";
     uint8 public decimals = 18;
 
+    function totalSupply() external view returns (uint) {
+        return totalSupply;
+    }
+
+    function balanceOf(address account) external view returns (bool) {
+        return balanceOf[account];
+    }
+
     function transfer(address recipient, uint amount) external returns (bool) {
         balanceOf[msg.sender] -= amount;
         balanceOf[recipient] += amount;
         emit Transfer(msg.sender, recipient, amount);
         return true;
+    }
+
+    function allowance(address owner, address spender) external view returns (bool) {
+        return allowance[owner][spender];
     }
 
     function approve(address spender, uint amount) external returns (bool) {
